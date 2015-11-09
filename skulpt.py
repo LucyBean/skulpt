@@ -167,9 +167,7 @@ def is64bit():
     return sys.maxsize > 2**32
 
 if sys.platform == "win32":
-    winbase = ".\\support\\d8\\x32"
-    if not os.path.exists(winbase):
-        winbase = ".\\support\\d8"
+    winbase = ".\\support\\d8\\"
     os.environ["D8_PATH"] = winbase
     jsengine = winbase + "\\d8.exe --debugger --harmony"
 
