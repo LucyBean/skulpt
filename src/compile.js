@@ -698,7 +698,7 @@ Compiler.prototype.vexpr = function (e, data, augvar, augsubs) {
             }
             goog.asserts.fail("unhandled Num type");
         case Str:
-            return this._gr("str", "new Sk.builtins['str'](", e.s["$r"]().v, ")");
+            return this._gr("str", "new Sk.builtin.str(", e.s["$r"]().v, ")");
         case Attribute:
             if (e.ctx !== AugLoad && e.ctx !== AugStore) {
                 val = this.vexpr(e.value);
@@ -2210,7 +2210,7 @@ Compiler.prototype.exitScope = function () {
         mangled = mangled.substring(1, mangled.length - 1);
         mangled = fixReservedWords(mangled);
         mangled = fixReservedNames(mangled);
-        out(prev.scopename, ".co_name=new Sk.builtins['str']('", mangled, "');");
+        out(prev.scopename, ".co_name=new Sk.builtin.str('", mangled, "');");
     }
 };
 
@@ -2234,7 +2234,7 @@ Compiler.prototype.cprint = function (s) {
     n = s.values.length;
     // todo; dest disabled
     for (i = 0; i < n; ++i) {
-        out("Sk.misceval.print_(", /*dest, ',',*/ "new Sk.builtins['str'](", this.vexpr(s.values[i]), ").v);");
+        out("Sk.misceval.print_(", /*dest, ',',*/ "new Sk.builtin.str(", this.vexpr(s.values[i]), ").v);");
     }
     if (s.nl) {
         out("Sk.misceval.print_(", /*dest, ',*/ "\"\\n\");");

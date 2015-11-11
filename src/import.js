@@ -404,8 +404,8 @@ Sk.importModuleInternal_ = function (name, dumpJS, modname, suppliedPyBody, canS
                 var pad;
                 var width;
                 var i;
-                var beaut = js_beautify(code);
-                var lines = beaut.split("\n");
+                //var beaut = js_beautify(code);
+                var lines = code.split("\n");
                 for (i = 1; i <= lines.length; ++i) {
                     width = ("" + i).length;
                     pad = "";
@@ -417,14 +417,15 @@ Sk.importModuleInternal_ = function (name, dumpJS, modname, suppliedPyBody, canS
                 return lines.join("\n");
             };
             finalcode = withLineNumbers(finalcode);
-            Sk.debugout(finalcode);
+            console.log(finalcode);
         }
         // }
 
         namestr = "new Sk.builtin.str('" + modname + "')";
         finalcode += "\n" + co.funcname + "(" + namestr + ");";
 
-        modlocs = goog.global["eval"](finalcode);
+		// This is throwing an exception
+        modlocs = goog.global.eval(finalcode);
 
         return (function finishLoading(modlocs) {
 
