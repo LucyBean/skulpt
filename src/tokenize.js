@@ -419,7 +419,7 @@ Sk.Tokenizer.prototype.generateTokens = function (line) {
             pos = end;
             token = line.substring(start, end);
             initial = line.charAt(start);
-            //Sk.debugout("token:",token, "initial:",initial, start, end);
+            console.log("token:",token, "initial:",initial, start, end);
             if (this.numchars.indexOf(initial) !== -1 || (initial === '.' && token !== '.')) {
                 if (this.callback(Sk.Tokenizer.Tokens.T_NUMBER, token, spos, epos, line)) {
                     return 'done';
@@ -472,6 +472,7 @@ Sk.Tokenizer.prototype.generateTokens = function (line) {
                     return false;
                 }
                 else {
+					debugger
                     if (this.callback(Sk.Tokenizer.Tokens.T_STRING, token, spos, epos, line)) {
                         return 'done';
                     }

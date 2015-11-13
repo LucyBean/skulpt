@@ -85,7 +85,7 @@ Parser.prototype.addtoken = function (type, value, context) {
     var states;
     var tp;
     var ilabel = this.classify(type, value, context);
-    //print("ilabel:"+ilabel);
+    //console.log("ilabel:"+ilabel);
 
     OUTERWHILE:
     while (true) {
@@ -107,7 +107,7 @@ Parser.prototype.addtoken = function (type, value, context) {
                 this.shift(type, value, newstate, context);
                 // pop while we are in an accept-only state
                 state = newstate;
-                //print("before:"+JSON.stringify(states[state]) + ":state:"+state+":"+JSON.stringify(states[state]));
+                //console.log("before:"+JSON.stringify(states[state]) + ":state:"+state+":"+JSON.stringify(states[state]));
                 /* jshint ignore:start */
                 while (states[state].length === 1
                     && states[state][0][0] === 0
@@ -152,6 +152,7 @@ Parser.prototype.addtoken = function (type, value, context) {
         } else {
             // no transition
             errline = context[0][0];
+			console.log("Parsing error: " + context[2]);
             throw new Sk.builtin.ParseError("bad input", this.filename, errline, context);
         }
     }

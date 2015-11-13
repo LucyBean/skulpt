@@ -272,6 +272,7 @@ if (COMPILED) {
  * @param {boolean=} canSuspend whether we may return a Suspension object
  */
 Sk.importModuleInternal_ = function (name, dumpJS, modname, suppliedPyBody, canSuspend) {
+	debugger
     //dumpJS = true;
     var parentModule;
     var modlocs;

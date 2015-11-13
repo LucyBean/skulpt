@@ -2313,6 +2313,7 @@ Sk.compile = function (source, filename, mode, canSuspend) {
     //print("FILE:", filename);
     var parse = Sk.parse(filename, source);
     var ast = Sk.astFromParse(parse.cst, filename, parse.flags);
+	debugger
 
     // compilers flags, later we can add other ones too
     var flags = {};
